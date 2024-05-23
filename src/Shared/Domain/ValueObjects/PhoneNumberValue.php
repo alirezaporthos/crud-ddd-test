@@ -5,7 +5,7 @@ namespace Src\Shared\Domain\ValueObjects;
 class PhoneNumberValue
 {
 
-    public function __construct(private ?string $value, private ?string $type = "IR")
+    public function __construct(private ?string $value, private readonly ?string $type = "IR")
     {
         $this->validate($value, $type);
     }
