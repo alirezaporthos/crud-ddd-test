@@ -23,7 +23,7 @@ class CustomerWriteRepository implements CustomerWriteInterfaceRepository
 
         $customer->save();
 
-        $customerEntity->setId($customer->id);
+        $customerEntity->getId()->setValue($customer->id);
 
         return $customerEntity;
     }

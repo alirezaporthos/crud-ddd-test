@@ -42,7 +42,7 @@ class CustomerTest extends TestCase
             'bank_account_number' => '1234567890123456',
         ];
 
-        $response = $this->post('/api/customers', $data);
+        $response = $this->postJson('/api/customers', $data);
 
         $response->assertStatus(201);
         $response->assertJsonFragment($data);
