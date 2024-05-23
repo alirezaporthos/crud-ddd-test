@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Contracts\Domain\ValueObjects;
+namespace Src\Shared\Domain\ValueObjects;
 
-use Src\Contracts\Exception\ValueObjects\StringIsTooLongException;
+use Src\Shared\Exceptions\ValueObjects\StringIsTooLongException;
 use Throwable;
 
 class StringValue

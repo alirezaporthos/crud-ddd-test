@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts\Exception;
+namespace Src\Shared\Exceptions;
 
 use Exception;
 

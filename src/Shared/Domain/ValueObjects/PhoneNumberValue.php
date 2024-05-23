@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts\Domain\ValueObjects;
+namespace Src\Shared\Domain\ValueObjects;
 
 class PhoneNumberValue
 {

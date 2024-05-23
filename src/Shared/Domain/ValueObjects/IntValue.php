@@ -1,9 +1,9 @@
 <?php
 
-namespace Src\Contracts\Domain\ValueObjects;
+namespace Src\Shared\Domain\ValueObjects;
 
-use Src\Contracts\Exception\ValueObjects\NumberIsLessThanMinException;
-use Src\Contracts\Exception\ValueObjects\NumberIsMoreThanMaxException;
+use Src\Shared\Exceptions\ValueObjects\NumberIsLessThanMinException;
+use Src\Shared\Exceptions\ValueObjects\NumberIsMoreThanMaxException;
 
 use Throwable;
 

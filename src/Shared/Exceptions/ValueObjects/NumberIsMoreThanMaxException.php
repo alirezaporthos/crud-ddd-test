@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\Contracts\Exception\ValueObject;
+namespace Src\Shared\Exceptions\ValueObjects;
 
-use Src\Contracts\Exception\DomainException;
+use Src\Shared\Exceptions\DomainException;
 
 class NumberIsMoreThanMaxException extends DomainException
 {
