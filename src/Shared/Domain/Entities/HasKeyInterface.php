@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Shared\Domain\Entity;
+namespace Src\Shared\Domain\Entities;
 
 interface HasKeyInterface
 {

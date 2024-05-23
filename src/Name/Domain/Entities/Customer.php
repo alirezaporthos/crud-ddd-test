@@ -9,7 +9,7 @@ use Src\Name\Domain\ValueObjects\CustomerId;
 use Src\Name\Domain\ValueObjects\CustomerFirstName;
 use Src\Name\Domain\ValueObjects\CustomerLastName;
 use Src\Name\Domain\ValueObjects\CustomerPhoneNumber;
-use Src\Shared\Domain\Entity\HasKeyInterface;
+use Src\Shared\Domain\Entities\HasKeyInterface;
 
 class Customer implements HasKeyInterface
 {
