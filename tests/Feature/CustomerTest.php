@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Src\Name\Domain\Entities\Customer;
+use Src\Name\Infrustructure\Models\Customer;
 use Tests\TestCase;
 
 class CustomerTest extends TestCase
