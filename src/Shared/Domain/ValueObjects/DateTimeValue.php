@@ -22,14 +22,17 @@ class DateTimeValue
 
     private function validateDate($dateTimeString)
     {
-        $format = 'Y-m-d\TH:i';
+        // $format = 'Y-m-d\TH:i';
+        // $dateTime = DateTime::createFromFormat($format, $dateTimeString);
+        // $isValid = $dateTime && $dateTime->format($format) === $dateTimeString;
+        // if (!$isValid) {
+        //     throw new DateTimeIsInvalid();
+        // }
 
-        $dateTime = DateTime::createFromFormat($format, $dateTimeString);
-
-        $isValid = $dateTime && $dateTime->format($format) === $dateTimeString;
-
-        if (!$isValid) {
-            throw new DateTimeIsInvalid();
+        try {
+            $dataTime = new DateTime($dateTimeString);
+        } catch (\Exception $e) {
+            throw new DateTimeIsInvalid('The date time string is invalid.');
         }
     }
 
