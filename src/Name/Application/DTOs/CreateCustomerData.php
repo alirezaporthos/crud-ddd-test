@@ -1,6 +1,6 @@
 <?php
 
-namespace Srs\Name\Application\DTOs;
+namespace Src\Name\Application\DTOs;
 
 class CreateCustomerData
 {

@@ -2,6 +2,7 @@
 
 namespace Src\Name\Application\Commands;
 
+use DateTime;
 use Src\Name\Application\Repositories\CustomerWriteInterfaceRepository;
 use Src\Name\Domain\Entities\Customer;
 use Src\Name\Domain\ValueObjects\CustomerBankAccountNumber;
@@ -11,7 +12,7 @@ use Src\Name\Domain\ValueObjects\CustomerFirstName;
 use Src\Name\Domain\ValueObjects\CustomerId;
 use Src\Name\Domain\ValueObjects\CustomerLastName;
 use Src\Name\Domain\ValueObjects\CustomerPhoneNumber;
-use Srs\Name\Application\DTOs\CreateCustomerData;
+use Src\Name\Application\DTOs\CreateCustomerData;
 
 readonly class CreateCustomerCommandHandler
 {
@@ -19,9 +20,8 @@ readonly class CreateCustomerCommandHandler
     {
     }
 
-    public function handle(CreateCustomerData $data)
+    public function handle(CreateCustomerData $data): Customer
     {
-
         $customer = new Customer(
             new CustomerId(),
             new CustomerFirstName($data->firstName),
