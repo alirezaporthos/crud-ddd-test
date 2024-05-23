@@ -12,13 +12,14 @@ class CustomerController extends Controller
     public function store(Request $request, CreateCustomerCommandHandler $command)
     {
         $customerDTO = new CreateCustomerData(
-            $request->firstName,
-            $request->lastName,
-            $request->dateOfBirth,
-            $request->phoneNumber,
-            $request->bankAccountNumber,
+            $request->first_name,
+            $request->last_name,
+            $request->date_of_birth,
+            $request->phone_number,
+            $request->bank_account_number,
             $request->email
         );
+
         return $command->handle($customerDTO);
     }
 }

@@ -4,13 +4,16 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Src\Name\Domain\Entities\Customer;
 use Tests\TestCase;
 
 class CustomerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_can_get_customer_by_id()
     {
-        $customer = \App\Models\Customer::factory()->create();
+        $customer = Customer::factory()->create();
 
         $response = $this->get("/api/customers/{$customer->id}");
 
@@ -33,8 +36,8 @@ class CustomerTest extends TestCase
         $data = [
             'first_name' => 'Alireza',
             'last_name' => 'Porthos',
-            'date_of_birth' => now(),
-            'phone_number' => 1234567890,
+            'date_of_birth' => now()->toString(),
+            'phone_number' => '09910451706',
             'email' => 'alireza@example.com',
             'bank_account_number' => '1234567890123456',
         ];
@@ -47,7 +50,7 @@ class CustomerTest extends TestCase
 
     public function test_can_update_customer()
     {
-        $customer = \App\Models\Customer::factory()->create();
+        $customer = Customer::factory()->create();
 
         $updatedData = [
             'first_name' => 'Porthos',
@@ -62,7 +65,7 @@ class CustomerTest extends TestCase
 
     public function test_can_delete_customer()
     {
-        $customer = \App\Models\Customer::factory()->create();
+        $customer = Customer::factory()->create();
 
         $response = $this->delete("/api/customers/{$customer->id}");
 
