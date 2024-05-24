@@ -71,4 +71,37 @@ class CustomerTest extends TestCase
 
         $response->assertStatus(204);
     }
+
+    public function test_it_fails_when_duplicate_customer_combination_is_attempted()
+    {
+        $data_of_birth = now()->toString();
+
+        $customer = Customer::create([
+            'first_name' => 'John',
+            'last_name' => 'Porthos',
+            'date_of_birth' => $data_of_birth,
+            'phone_number' => '09910451706',
+            'email' => 'test@example.com',
+            'bank_account_number' => '1234567890123456',
+        ]);
+
+        $response = $this->postJson('/api/customers', [
+            'date_of_birth' => $data_of_birth,
+            'first_name' => 'John',
+            'last_name' => 'Porthos',
+            'phone_number' => '09910451706',
+            'email' => 'test2@example.com',
+            'bank_account_number' => '1234567890123456',
+        ]);
+
+        // Assert that the response status is 422 Unprocessable Entity, indicating validation failure
+        $response->assertStatus(422);
+
+        // Optionally, assert that the response contains the expected validation error message
+        $response->assertJsonValidationErrors([
+            'first_name',
+            'last_name',
+            'date_of_birth',
+        ]);
+    }
 }

@@ -13,10 +13,11 @@ use Src\Name\Application\DTOs\DeleteCustomerData;
 use Src\Name\Application\DTOs\FindCustomerData;
 use Src\Name\Application\DTOs\UpdateCustomerData;
 use Src\Name\Application\Queries\FindCustomerQueryHandler;
+use Src\Name\Presentation\Requests\StoreCustomerRequest;
 
 class CustomerController extends Controller
 {
-    public function store(Request $request, CreateCustomerCommandHandler $command): JsonResponse
+    public function store(StoreCustomerRequest $request, CreateCustomerCommandHandler $command): JsonResponse
     {
         $customerDTO = new CreateCustomerData(
             $request->first_name,
