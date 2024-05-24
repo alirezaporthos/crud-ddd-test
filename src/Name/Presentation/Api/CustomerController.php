@@ -7,6 +7,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Src\Name\Application\Commands\CreateCustomerCommandHandler;
 use Src\Name\Application\DTOs\CreateCustomerData;
+use Src\Name\Application\DTOs\FindCustomerData;
+use Src\Name\Application\Queries\FindCustomerQueryHandler;
 
 class CustomerController extends Controller
 {
@@ -34,6 +36,27 @@ class CustomerController extends Controller
                 'email' => $customer->getEmail()->getAddress()
             ],
             201
+        );
+    }
+
+    public function show($id, FindCustomerQueryHandler $query)
+    {
+        $findCustomerDTO = new FindCustomerData($id);
+
+        //TODO change DTO to payload
+        $customer = $query->handle($findCustomerDTO);
+
+        //TODO refactor this to viewModels
+        return response()->json(
+            [
+                'id' => $customer->getId()->getValue(),
+                'first_name' => $customer->getFirstName()->getValue(),
+                'last_name' => $customer->getLastName()->getValue(),
+                'phone_number' => $customer->getPhoneNumber()->getValue(),
+                'bank_account_number' => $customer->getBankAccountNumber()->getValue(),
+                'date_of_birth' => $customer->getDateOfBirth()->getDateTime()->format('D M d Y H:i:s T'),
+                'email' => $customer->getEmail()->getAddress()
+            ]
         );
     }
 }

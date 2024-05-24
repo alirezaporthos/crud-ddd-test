@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
+use DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Src\Name\Infrustructure\Models\Customer;
 use Tests\TestCase;
 
 class CustomerTest extends TestCase
 {
+    //TODO give a fixed format to date_of_birth
     use RefreshDatabase;
 
     public function test_can_get_customer_by_id()
@@ -21,7 +23,7 @@ class CustomerTest extends TestCase
             'id' => $customer->id,
             'first_name' => $customer->first_name,
             'last_name' => $customer->last_name,
-            'date_of_birth' => $customer->date_of_birth,
+            'date_of_birth' => ($customer->date_of_birth)->format('D M d Y H:i:s T'),
             'phone_number' => $customer->phone_number,
             'email' => $customer->email,
             'bank_account_number' => $customer->bank_account_number,
