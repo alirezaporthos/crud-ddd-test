@@ -27,4 +27,9 @@ class CustomerWriteRepository implements CustomerWriteInterfaceRepository
 
         return $customerEntity;
     }
+
+    public function destroy(int $customerId): bool
+    {
+        return ModelsCustomer::destroy($customerId);
+    }
 }

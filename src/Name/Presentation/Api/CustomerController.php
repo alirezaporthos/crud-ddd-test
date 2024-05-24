@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Src\Name\Application\Commands\CreateCustomerCommandHandler;
+use Src\Name\Application\Commands\DeleteCustomerCommandHandler;
 use Src\Name\Application\DTOs\CreateCustomerData;
+use Src\Name\Application\DTOs\DeleteCustomerData;
 use Src\Name\Application\DTOs\FindCustomerData;
 use Src\Name\Application\Queries\FindCustomerQueryHandler;
 
@@ -58,5 +60,13 @@ class CustomerController extends Controller
                 'email' => $customer->getEmail()->getAddress()
             ]
         );
+    }
+
+    public function destroy($id, DeleteCustomerCommandHandler $command)
+    {
+        $deleteCustomerDTO = new DeleteCustomerData($id);
+
+        if ($command->handle($deleteCustomerDTO))
+            return response(null, 204);
     }
 }
