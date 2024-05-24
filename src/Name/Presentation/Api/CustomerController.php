@@ -14,10 +14,14 @@ use Src\Name\Application\Payloads\UpdateCustomerPayload;
 use Src\Name\Application\Queries\FindCustomerQueryHandler;
 use Src\Name\Presentation\Requests\StoreCustomerRequest;
 use Src\Name\Presentation\Requests\UpdateCustomerRequest;
+use Src\Shared\Application\CommandBusInterface;
 
 class CustomerController extends Controller
 {
-    public function store(StoreCustomerRequest $request, CreateCustomerCommandHandler $command): JsonResponse
+    public function __construct(private CommandBusInterface $bus)
+    {
+    }
+    public function store(StoreCustomerRequest $request): JsonResponse
     {
         $createCustomerPayload = new CreateCustomerPayload(
             $request->first_name,
@@ -28,7 +32,16 @@ class CustomerController extends Controller
             $request->email
         );
 
-        $customer = $command->handle($createCustomerPayload);
+        // this is another way of using command bus
+        // $customer = CreateCustomerPayload::dispatch(
+        //     $request->first_name,
+        //     $request->last_name,
+        //     $request->date_of_birth,
+        //     $request->phone_number,
+        //     $request->bank_account_number,
+        //     $request->email
+        // );
+        $customer = $this->bus->dispatch($createCustomerPayload);
 
         //TODO refactor this to viewModels
         return response()->json(
@@ -44,7 +57,7 @@ class CustomerController extends Controller
         );
     }
 
-    public function update($id, UpdateCustomerRequest $request, UpdateCustomerCommandHandler $command)
+    public function update($id, UpdateCustomerRequest $request)
     {
         //TODO make requests for these
         $updateCustomerPayload = new UpdateCustomerPayload(
@@ -57,7 +70,7 @@ class CustomerController extends Controller
             $request->email
         );
 
-        $customer = $command->handle($updateCustomerPayload);
+        $customer = $this->bus->dispatch($updateCustomerPayload);
 
         return response()->json(
             [
@@ -71,12 +84,11 @@ class CustomerController extends Controller
             200
         );
     }
-    public function show($id, FindCustomerQueryHandler $query)
+    public function show($id)
     {
         $findCustomerPayload = new FindCustomerPayload($id);
 
-        //TODO change DTO to payload
-        $customer = $query->handle($findCustomerPayload);
+        $customer = $this->bus->dispatch($findCustomerPayload);
 
         //TODO refactor this to viewModels
         return response()->json(
@@ -92,11 +104,11 @@ class CustomerController extends Controller
         );
     }
 
-    public function destroy($id, DeleteCustomerCommandHandler $command)
+    public function destroy($id)
     {
         $deleteCustomerPayload = new DeleteCustomerPayload($id);
 
-        if ($command->handle($deleteCustomerPayload))
+        if ($this->bus->dispatch($deleteCustomerPayload))
             return response(null, 204);
     }
 }

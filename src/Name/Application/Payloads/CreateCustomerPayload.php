@@ -4,6 +4,8 @@ namespace Src\Name\Application\Payloads;
 
 class CreateCustomerPayload
 {
+    // use Dispatchable;
+
     public function __construct(
         public ?string $firstName,
         public ?string $lastName,
