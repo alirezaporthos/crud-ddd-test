@@ -1,10 +1,11 @@
 <?php
 
-namespace Src\Name\Application\DTOs;
+namespace Src\Name\Application\Payloads;
 
-class CreateCustomerData
+class UpdateCustomerPayload
 {
     public function __construct(
+        public int $customerId,
         public ?string $firstName,
         public ?string $lastName,
         public ?string $dateOfBirth,

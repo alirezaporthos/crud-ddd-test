@@ -2,7 +2,7 @@
 
 namespace Src\Name\Application\Queries;
 
-use Src\Name\Application\DTOs\FindCustomerData;
+use Src\Name\Application\Payloads\FindCustomerPayload;
 use Src\Name\Application\Repositories\CustomerReadInterfaceRepository;
 
 class FindCustomerQueryHandler
@@ -11,7 +11,7 @@ class FindCustomerQueryHandler
     {
     }
 
-    public function handle(FindCustomerData $data)
+    public function handle(FindCustomerPayload $data)
     {
         return $this->readRepository->findOrFail($data->customerId);
     }

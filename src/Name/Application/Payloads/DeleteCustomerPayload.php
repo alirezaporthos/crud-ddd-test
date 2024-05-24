@@ -1,9 +1,9 @@
 <?php
 
-namespace Src\Name\Application\DTOs;
+namespace Src\Name\Application\Payloads;
 
 
-class DeleteCustomerData
+class DeleteCustomerPayload
 {
     public function __construct(public int $customerId)
     {

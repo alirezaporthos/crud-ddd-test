@@ -2,17 +2,14 @@
 
 namespace Src\Name\Application\Commands;
 
-use DateTime;
 use Src\Name\Application\Repositories\CustomerWriteInterfaceRepository;
-use Src\Name\Domain\Entities\Customer;
 use Src\Name\Domain\ValueObjects\CustomerBankAccountNumber;
 use Src\Name\Domain\ValueObjects\CustomerDateofBirth;
 use Src\Name\Domain\ValueObjects\CustomerEmail;
 use Src\Name\Domain\ValueObjects\CustomerFirstName;
-use Src\Name\Domain\ValueObjects\CustomerId;
 use Src\Name\Domain\ValueObjects\CustomerLastName;
 use Src\Name\Domain\ValueObjects\CustomerPhoneNumber;
-use Src\Name\Application\DTOs\UpdateCustomerData;
+use Src\Name\Application\Payloads\UpdateCustomerPayload;
 use Src\Name\Application\Repositories\CustomerReadInterfaceRepository;
 
 readonly class UpdateCustomerCommandHandler
@@ -23,7 +20,7 @@ readonly class UpdateCustomerCommandHandler
     ) {
     }
 
-    public function handle(UpdateCustomerData $data)
+    public function handle(UpdateCustomerPayload $data)
     {
         $customerEntity = $this->readRepository->findOrFail($data->customerId);
 
