@@ -14,6 +14,7 @@ use Src\Name\Application\DTOs\FindCustomerData;
 use Src\Name\Application\DTOs\UpdateCustomerData;
 use Src\Name\Application\Queries\FindCustomerQueryHandler;
 use Src\Name\Presentation\Requests\StoreCustomerRequest;
+use Src\Name\Presentation\Requests\UpdateCustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -44,7 +45,7 @@ class CustomerController extends Controller
         );
     }
 
-    public function update($id, Request $request, UpdateCustomerCommandHandler $command)
+    public function update($id, UpdateCustomerRequest $request, UpdateCustomerCommandHandler $command)
     {
         //TODO make requests for these
         $customerDTO = new UpdateCustomerData(
