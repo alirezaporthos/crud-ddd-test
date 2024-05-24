@@ -32,4 +32,18 @@ class CustomerWriteRepository implements CustomerWriteInterfaceRepository
     {
         return ModelsCustomer::destroy($customerId);
     }
+
+    public function update(Customer $customerEntity): bool
+    {
+        $customer = ModelsCustomer::findOrFail($customerEntity->getKey());
+
+        return $customer->update([
+            'first_name' => $customerEntity->GetFirstName()->getValue(),
+            'last_name' => $customerEntity->getLastName()->getValue(),
+            'bank_account_number' => $customerEntity->getBankAccountNumber()->getValue(),
+            'phone_number' => $customerEntity->getPhoneNumber()->getValue(),
+            'email' => $customerEntity->getEmail()->getAddress(),
+            'date_of_birth' => $customerEntity->getDateOfBirth()->getDateTime(),
+        ]);
+    }
 }

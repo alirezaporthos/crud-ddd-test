@@ -9,4 +9,6 @@ interface CustomerWriteInterfaceRepository
     public function save(Customer $customer);
 
     public function destroy(int $customerId): bool;
+
+    public function update(Customer $customer): bool;
 }
