@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Src\Name\Infrustructure\Models\Customer;
 use Tests\TestCase;
 
@@ -14,7 +13,6 @@ class CustomerTest extends TestCase
     public function test_can_get_customer_by_id()
     {
         $customer = Customer::factory()->create();
-
         $response = $this->get("/api/customers/{$customer->id}");
 
         $response->assertStatus(200);
