@@ -1,0 +1,249 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/customers": {
+            "post": {
+                "summary": "Create a new customer",
+                "operationId": "45b223d5582619e2254f886ce9d1fe88",
+                "requestBody": {
+                    "description": "New customer details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "first_name,last_name and date_of_birth combination must be unique",
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "date_of_birth",
+                                    "email",
+                                    "phone_number",
+                                    "bank_account_number"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "Alireza"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Porthos"
+                                    },
+                                    "date_of_birth": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "1999-11-9"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "09910451706"
+                                    },
+                                    "bank_account_number": {
+                                        "type": "string",
+                                        "maxLength": 18,
+                                        "minLength": 9,
+                                        "example": 1234567890
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "alireza@test.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Customer created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Customer"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/customers/{id}": {
+            "get": {
+                "summary": "Retrieve a customer by ID",
+                "operationId": "0032c013d37af61a1a2d876b9f474393",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "@type": "string",
+                            "description": "ID of the customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of customer",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Customer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a customer by ID",
+                "operationId": "888d265f2af95febe0234cf3e759bdff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "@type": "string",
+                            "description": "ID of the customer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updated customer details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "Alireza"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Porthos"
+                                    },
+                                    "date_of_birth": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "1999-11-9"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "09910451706"
+                                    },
+                                    "bank_account_number": {
+                                        "type": "string",
+                                        "maxLength": 18,
+                                        "minLength": 9,
+                                        "example": 1234567890
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "alireza@test.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Customer updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Customer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a customer by ID",
+                "operationId": "f32b091750e598e59d3a67eefee99546",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "@type": "string",
+                            "description": "ID of the customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Customer deleted successfully"
+                    },
+                    "404": {
+                        "description": "Customer not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Customer": {
+                "title": "Customer",
+                "description": "Customer resource",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "Alireza"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Porthos"
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1999-11-9"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "alireza@example.com"
+                    },
+                    "phone_number": {
+                        "type": "string",
+                        "example": "09910451706"
+                    },
+                    "bank_account_number": {
+                        "type": "string",
+                        "maxLength": 18,
+                        "minLength": 9,
+                        "example": "1234567890"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
