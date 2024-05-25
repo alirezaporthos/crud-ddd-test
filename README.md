@@ -1,47 +1,37 @@
-# Laravel CRUD Test Assignment
+# crud--ddd-test
 
-Please read each note very carefully!
-Feel free to add/change project structure to a clean architecture to your view.
+1. Install dependencies
 
-Create a simple CRUD application with Laravel that implements the below model:
+```bash
+composer install && npm install
 ```
-Customer {
-	Firstname
-	Lastname
-	DateOfBirth
-	PhoneNumber
-	Email
-	BankAccountNumber
-}
+
+2. Copy .env.example and generate app key
+
+```bash
+cp .env.example .env && php artisan key:generate
 ```
-## Practices and patterns (Must):
 
-- [TDD](https://en.wikipedia.org/wiki/Test-driven_development)
-- [DDD](https://en.wikipedia.org/wiki/Domain-driven_design)
-- [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development)
-- [Clean architecture](https://github.com/jasontaylordev/CleanArchitecture)
-- Clean git commits that shows your work progress.
-- Use latest PHP only
-- Swagger
+3. Migrate the database
 
-### Validations (Must)
+```bash
+php artisan migrate
+```
 
-- During Create; validate the phone number to be a valid *mobile* number only (Please use [Google LibPhoneNumber](https://github.com/google/libphonenumber) to validate number at the backend).
+4. Run the application
 
-- A Valid email and a valid bank account number must be checked before submitting the form.
+```bash
+php artisan serve
+npm run dev
+```
 
-- Customers must be unique in database: By `Firstname`, `Lastname` and `DateOfBirth`.
 
-- Email must be unique in the database.
 
-### Storage (Must)
+### Further development
+1. Dockerize the project
 
-- Store the phone number in a database with minimized space storage (choose `varchar`/`string`, or `bigInt unsigned` whichever store less space).
+2. Do the TODOs
 
-### Delivery (Must)
-- Please clone this repository in a new github repository in private mode and share with ID: `mason-chase` in private mode on github.com, make sure you do not erase my commits and then create a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) (code review).
-- Docker-compose project that loads database service automatically with `docker-compose up`
+3. Put swagger codes for schemas in resources and requests classes.
 
-## Presentation (Nice To Have)
-- Web UI.
-- [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_query_responsibility_separation) pattern ([Event sourcing](https://en.wikipedia.org/wiki/Domain-driven_design#Event_sourcing)).
+4. Rename domain name from "Name" to actual name
