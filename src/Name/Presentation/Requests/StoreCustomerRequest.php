@@ -8,6 +8,20 @@ use Src\Name\Infrustructure\Models\Customer;
 use Src\Name\Presentation\Requests\Rules\PhoneNumberRule;
 use Src\Name\Presentation\Requests\Rules\UniqueCombinationRule;
 
+/**
+ * @OA\Schema(
+ *     schema="StoreCustomerRequest",
+ *     title="Store Customer Request",
+ *     description="Store customer request body",
+ *     required={"first_name", "date_of_birth", "last_name", "email", "phone_number", "bank_account_number"},
+ *     @OA\Property(property="first_name",  type="string", example="Alireza"),
+ *     @OA\Property(property="last_name", type="string", example="Porthos"),
+ *     @OA\Property(property="date_of_birth", type="string", format="date-time", example="1999-11-9"),
+ *     @OA\Property(property="phone_number", type="string", example="09910451706"),
+ *     @OA\Property(property="bank_account_number", type="string",  minLength=9, maxLength=18, example=1234567890),
+ *     @OA\Property(property="email", type="string", format="email", example="alireza@test.com")
+ * )
+ */
 class StoreCustomerRequest extends FormRequest
 {
     /**

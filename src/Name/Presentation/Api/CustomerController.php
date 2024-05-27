@@ -29,17 +29,7 @@ class CustomerController extends Controller
      *     @OA\RequestBody(
      *         description="New customer details",
      *         required=true,
-     *         @OA\JsonContent(
-     *             type="object",
-     *             description="first_name,last_name and date_of_birth combination must be unique",
-     *             required={"first_name", "last_name", "date_of_birth", "email", "phone_number", "bank_account_number"},
-     *             @OA\Property(property="first_name", type="string", example="Alireza"),
-     *             @OA\Property(property="last_name", type="string", example="Porthos"),
-     *             @OA\Property(property="date_of_birth", type="string", format="date-time", example="1999-11-9"),
-     *             @OA\Property(property="phone_number", type="string", example="09910451706"),
-     *             @OA\Property(property="bank_account_number", type="string",  minLength=9, maxLength=18, example=1234567890),
-     *             @OA\Property(property="email", type="string", format="email", example="alireza@test.com")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/StoreCustomerRequest")
      *     ),
      *     @OA\Response(
      *         response=201,
@@ -93,17 +83,9 @@ class CustomerController extends Controller
      *         }
      *     ),
      *     @OA\RequestBody(
-     *         description="Updated customer details",
+     *         description="Update customer details",
      *         required=true,
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="first_name",  type="string", example="Alireza"),
-     *             @OA\Property(property="last_name", type="string", example="Porthos"),
-     *             @OA\Property(property="date_of_birth", type="string", format="date-time", example="1999-11-9"),
-     *             @OA\Property(property="phone_number", type="string", example="09910451706"),
-     *             @OA\Property(property="bank_account_number", type="string",  minLength=9, maxLength=18, example=1234567890),
-     *             @OA\Property(property="email", type="string", format="email", example="alireza@test.com")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateCustomerRequest")
      *     ),
      *     @OA\Response(
      *         response=200,

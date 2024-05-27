@@ -15,46 +15,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "description": "first_name,last_name and date_of_birth combination must be unique",
-                                "required": [
-                                    "first_name",
-                                    "last_name",
-                                    "date_of_birth",
-                                    "email",
-                                    "phone_number",
-                                    "bank_account_number"
-                                ],
-                                "properties": {
-                                    "first_name": {
-                                        "type": "string",
-                                        "example": "Alireza"
-                                    },
-                                    "last_name": {
-                                        "type": "string",
-                                        "example": "Porthos"
-                                    },
-                                    "date_of_birth": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "example": "1999-11-9"
-                                    },
-                                    "phone_number": {
-                                        "type": "string",
-                                        "example": "09910451706"
-                                    },
-                                    "bank_account_number": {
-                                        "type": "string",
-                                        "maxLength": 18,
-                                        "minLength": 9,
-                                        "example": 1234567890
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "alireza@test.com"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/StoreCustomerRequest"
                             }
                         }
                     }
@@ -122,42 +83,12 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Updated customer details",
+                    "description": "Update customer details",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "properties": {
-                                    "first_name": {
-                                        "type": "string",
-                                        "example": "Alireza"
-                                    },
-                                    "last_name": {
-                                        "type": "string",
-                                        "example": "Porthos"
-                                    },
-                                    "date_of_birth": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "example": "1999-11-9"
-                                    },
-                                    "phone_number": {
-                                        "type": "string",
-                                        "example": "09910451706"
-                                    },
-                                    "bank_account_number": {
-                                        "type": "string",
-                                        "maxLength": 18,
-                                        "minLength": 9,
-                                        "example": 1234567890
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "alireza@test.com"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/UpdateCustomerRequest"
                             }
                         }
                     }
@@ -240,6 +171,84 @@
                         "maxLength": 18,
                         "minLength": 9,
                         "example": "1234567890"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreCustomerRequest": {
+                "title": "Store Customer Request",
+                "description": "Store customer request body",
+                "required": [
+                    "first_name",
+                    "date_of_birth",
+                    "last_name",
+                    "email",
+                    "phone_number",
+                    "bank_account_number"
+                ],
+                "properties": {
+                    "first_name": {
+                        "type": "string",
+                        "example": "Alireza"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Porthos"
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1999-11-9"
+                    },
+                    "phone_number": {
+                        "type": "string",
+                        "example": "09910451706"
+                    },
+                    "bank_account_number": {
+                        "type": "string",
+                        "maxLength": 18,
+                        "minLength": 9,
+                        "example": 1234567890
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "alireza@test.com"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateCustomerRequest": {
+                "title": "Update Customer Request",
+                "description": "Update customer request body",
+                "properties": {
+                    "first_name": {
+                        "type": "string",
+                        "example": "Alireza"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Porthos"
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1999-11-9"
+                    },
+                    "phone_number": {
+                        "type": "string",
+                        "example": "09910451706"
+                    },
+                    "bank_account_number": {
+                        "type": "string",
+                        "maxLength": 18,
+                        "minLength": 9,
+                        "example": 1234567890
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "alireza@test.com"
                     }
                 },
                 "type": "object"

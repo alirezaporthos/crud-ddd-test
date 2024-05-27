@@ -40,6 +40,7 @@ return [
                 */
                 'annotations' => [
                     base_path('src\Name\Presentation\Api'),
+                    base_path('src\Name\Presentation\Requests'),
                 ],
 
             ],
