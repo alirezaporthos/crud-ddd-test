@@ -28,10 +28,8 @@ npm run dev
 
 
 ### Further development
-1. Dockerize the project
+1. Do the TODOs
 
-2. Do the TODOs
+2. Put swagger codes for schemas in resources and requests classes.
 
-3. Put swagger codes for schemas in resources and requests classes.
-
-4. Rename domain name from "Name" to actual name
+3. Rename domain name from "Name" to actual name
