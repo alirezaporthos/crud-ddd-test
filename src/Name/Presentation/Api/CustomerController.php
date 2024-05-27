@@ -12,54 +12,9 @@ use Src\Name\Presentation\Requests\StoreCustomerRequest;
 use Src\Name\Presentation\Requests\UpdateCustomerRequest;
 use Src\Shared\Application\CommandBusInterface;
 use OpenApi\Annotations as OA;
+use Src\Name\Domain\Entities\Customer;
+use Src\Name\Presentation\Api\ApiResources\CustomerResource;
 
-//TODO refactor to resources
-/**
- * @OA\Schema(
- *     schema="Customer",
- *     title="Customer",
- *     description="Customer resource",
- *     @OA\Property(
- *         property="id",
- *         type="integer",
- *         example=1
- *     ),
- *     @OA\Property(
- *         property="first_name",
- *         type="string",
- *         example="Alireza"
- *     ),
- *     @OA\Property(
- *         property="last_name",
- *         type="string",
- *         example="Porthos"
- *     ),
- *     @OA\Property(
- *         property="date_of_birth",
- *         type="string",
- *         format="date-time",
- *         example="1999-11-9"
- *     ),
- *     @OA\Property(
- *         property="email",
- *         type="string",
- *         format="email",
- *         example="alireza@example.com"
- *     ),
- *     @OA\Property(
- *         property="phone_number",
- *         type="string",
- *         example="09910451706"
- *     ),
- *     @OA\Property(
- *         property="bank_account_number",
- *         type="string",
- *         minLength=9,
- *         maxLength=18,
- *         example="1234567890"
- *     ),
- * )
- */
 class CustomerController extends Controller
 {
 
@@ -119,16 +74,8 @@ class CustomerController extends Controller
         // );
         $customer = $this->bus->dispatch($createCustomerPayload);
 
-        //TODO refactor this to viewModels
         return response()->json(
-            [
-                'first_name' => $customer->getFirstName()->getValue(),
-                'last_name' => $customer->getLastName()->getValue(),
-                'phone_number' => $customer->getPhoneNumber()->getValue(),
-                'bank_account_number' => $customer->getBankAccountNumber()->getValue(),
-                'date_of_birth' => $customer->getDateOfBirth()->getDateTime()->format('D M d Y H:i:s T'),
-                'email' => $customer->getEmail()->getAddress()
-            ],
+            CustomerResource::EntityToArray($customer),
             201
         );
     }
@@ -171,7 +118,6 @@ class CustomerController extends Controller
      */
     public function update($id, UpdateCustomerRequest $request)
     {
-        //TODO make requests for these
         $updateCustomerPayload = new UpdateCustomerPayload(
             $id,
             $request->first_name,
@@ -185,14 +131,7 @@ class CustomerController extends Controller
         $customer = $this->bus->dispatch($updateCustomerPayload);
 
         return response()->json(
-            [
-                'first_name' => $customer->getFirstName()->getValue(),
-                'last_name' => $customer->getLastName()->getValue(),
-                'phone_number' => $customer->getPhoneNumber()->getValue(),
-                'bank_account_number' => $customer->getBankAccountNumber()->getValue(),
-                'date_of_birth' => $customer->getDateOfBirth()->getDateTime()->format('D M d Y H:i:s T'),
-                'email' => $customer->getEmail()->getAddress()
-            ],
+            CustomerResource::EntityToArray($customer),
             200
         );
     }
@@ -227,17 +166,8 @@ class CustomerController extends Controller
 
         $customer = $this->bus->dispatch($findCustomerPayload);
 
-        //TODO refactor this to viewModels
         return response()->json(
-            [
-                'id' => $customer->getId()->getValue(),
-                'first_name' => $customer->getFirstName()->getValue(),
-                'last_name' => $customer->getLastName()->getValue(),
-                'phone_number' => $customer->getPhoneNumber()->getValue(),
-                'bank_account_number' => $customer->getBankAccountNumber()->getValue(),
-                'date_of_birth' => $customer->getDateOfBirth()->getDateTime()->format('D M d Y H:i:s T'),
-                'email' => $customer->getEmail()->getAddress()
-            ]
+            CustomerResource::EntityToArray($customer)
         );
     }
 

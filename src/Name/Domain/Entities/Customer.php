@@ -98,4 +98,17 @@ class Customer implements HasKeyInterface
     {
         return $this->bankAccountNumber;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId()?->getValue(),
+            'first_name' => $this->getFirstName()?->getValue(),
+            'last_name' => $this->getLastName()?->getValue(),
+            'phone_number' => $this->getPhoneNumber()?->getValue(),
+            'bank_account_number' => $this->getBankAccountNumber()?->getValue(),
+            'date_of_birth' => $this->getDateOfBirth()->getDateTime()?->format('D M d Y H:i:s T'),
+            'email' => $this->getEmail()?->getAddress()
+        ];
+    }
 }
