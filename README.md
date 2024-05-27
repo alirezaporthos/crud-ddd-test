@@ -3,7 +3,7 @@
 1. Install dependencies
 
 ```bash
-composer install && npm install
+composer install
 ```
 
 2. Copy .env.example and generate app key
@@ -22,7 +22,6 @@ php artisan migrate
 
 ```bash
 php artisan serve
-npm run dev
 ```
 
 
